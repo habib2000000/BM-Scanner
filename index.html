@@ -2,51 +2,93 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bio-Mirror | النطاق الرسمي</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Bio-Mirror | Pi Network</title>
     
     <script src="https://sdk.minepi.com/pi-sdk.js"></script>
 
     <style>
-        :root { --pi-purple: #5e2d89; --stellar-blue: #08b5e5; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f0f1f; color: white; text-align: center; margin: 0; padding: 20px; }
-        .app-container { max-width: 500px; margin: auto; background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 20px; border: 1px solid var(--stellar-blue); box-shadow: 0 0 20px var(--stellar-blue); }
-        
-        /* تنسيق إظهار الرابط للزائر */
-        .official-url { background: rgba(8, 181, 229, 0.2); color: var(--stellar-blue); padding: 10px; border-radius: 10px; font-size: 14px; margin-bottom: 20px; border: 1px dashed var(--stellar-blue); word-break: break-all; }
-        
-        .scanner-area { width: 150px; height: 150px; margin: 20px auto; border: 3px solid var(--stellar-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; position: relative; overflow: hidden; }
-        .scanner-area:active { transform: scale(0.95); box-shadow: 0 0 30px white; }
-        .ai-status { color: var(--stellar-blue); font-weight: bold; margin-top: 15px; min-height: 24px; }
-        .result-box { margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; display: none; }
-        button { background: var(--pi-purple); color: white; border: none; padding: 12px 25px; border-radius: 25px; cursor: pointer; font-size: 16px; transition: 0.3s; }
+        /* تصميم متوافق مع نظام Pi (Dark Mode & Mobile Optimized) */
+        :root {
+            --pi-purple: #5e2d89;
+            --stellar-blue: #08b5e5;
+            --bg-dark: #0f0f1f;
+        }
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: white;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        .app-card {
+            width: 90%;
+            max-width: 400px;
+            background: linear-gradient(145deg, #16162d, #0f0f1f);
+            border: 2px solid var(--stellar-blue);
+            border-radius: 25px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 0 25px rgba(8, 181, 229, 0.3);
+        }
+        .official-link {
+            background: rgba(8, 181, 229, 0.1);
+            border: 1px solid var(--stellar-blue);
+            border-radius: 10px;
+            padding: 8px;
+            font-size: 12px;
+            margin-bottom: 20px;
+            color: var(--stellar-blue);
+        }
+        .scanner-circle {
+            width: 140px;
+            height: 140px;
+            border: 4px solid var(--stellar-blue);
+            border-radius: 50%;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            box-shadow: 0 0 15px var(--stellar-blue);
+        }
+        /* زر دخول التطبيق الرئيسي (الذي سيقوم بالتحويل) */
+        .btn-enter {
+            background-color: var(--pi-purple);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(94, 45, 137, 0.4);
+        }
     </style>
 </head>
 <body>
 
-    <div class="app-container">
-        <div class="official-url">
-            رابط التطبيق الرسمي: <br>
-            <strong>https://bmscanner2015.pinet.com</strong>
+    <div class="app-card">
+        <div class="official-link">
+            الرابط الرسمي: https://bmscanner2015.pinet.com
         </div>
 
-        <h1>Bio-Mirror 🏥</h1>
-        <p>تحليل السيادة الصحية عبر شبكة Stellar</p>
+        <img src="https://img.icons8.com/fluency/96/hospital.png" alt="Logo" width="60">
+        <h2>Bio-Mirror</h2>
+        <p style="color: #ccc; font-size: 14px;">تحليل السيادة الصحية عبر شبكة Stellar</p>
 
-        <div class="scanner-area" id="scanBtn">
+        <div class="scanner-circle" id="scanner">
             <span>إصبعك هنا</span>
         </div>
 
-        <div id="aiStatus" class="ai-status">جاهز للتحليل...</div>
-
-        <div id="resultBox" class="result-box">
-            <h3>نتائج تحليل AI:</h3>
-            <p id="healthStats"></p>
-            <small>موثق عبر بروتوكول Stellar</small>
-        </div>
-
-        <br>
-        <button onclick="loginWithPi()">ربط محفظة Pi</button>
+        <button class="btn-enter" id="enterApp">ربط محفظة Pi والدخول</button>
     </div>
 
     <script>
@@ -54,42 +96,25 @@
         const Pi = window.Pi;
         try {
             Pi.init({ version: "2.0", sandbox: true });
-            console.log("Bio-Mirror Live on: https://bmscanner2015.pinet.com");
-        } catch (e) { console.error("Pi SDK error:", e); }
+        } catch (e) { console.error(e); }
 
-        function loginWithPi() {
-            Pi.authenticate(['payments', 'username'], onIncompletePaymentFound)
-                .then(function(auth) { alert("مرحباً: " + auth.user.username); })
-                .catch(function(e) { console.error(e); });
-        }
+        // تفعيل زر الدخول للتحويل المباشر للينك التطبيق
+        document.getElementById('enterApp').onclick = function() {
+            // تنفيذ المصادقة أولاً قبل الدخول
+            Pi.authenticate(['username', 'payments'], onIncompletePaymentFound)
+                .then(function(auth) {
+                    alert("تم التحقق من الحساب بنجاح!");
+                    // التحويل المباشر لعنوان التطبيق الرسمي
+                    window.location.href = "https://bmscanner2015.pinet.com";
+                })
+                .catch(function(error) {
+                    console.error(error);
+                    // في حالة الاختبار (Sandbox) يمكن التحويل مباشرة حتى لو فشل الربط
+                    window.location.href = "https://bmscanner2015.pinet.com";
+                });
+        };
 
         function onIncompletePaymentFound(payment) { }
-
-        // منطق المسح الحيوي (AI Simulation)
-        const scanBtn = document.getElementById('scanBtn');
-        const aiStatus = document.getElementById('aiStatus');
-        const resultBox = document.getElementById('resultBox');
-        const healthStats = document.getElementById('healthStats');
-
-        scanBtn.addEventListener('click', () => {
-            aiStatus.innerText = "جاري الاتصال بالعقد النجمية...";
-            scanBtn.style.borderColor = "white";
-            
-            setTimeout(() => {
-                aiStatus.innerText = "تحليل المؤشرات الحيوية...";
-                
-                setTimeout(() => {
-                    aiStatus.innerText = "اكتمل التحليل ✅";
-                    resultBox.style.display = "block";
-                    healthStats.innerHTML = `
-                        سكر الدم: 95 mg/dL <br>
-                        نبض القلب: 72 BPM <br>
-                        الحالة: مستقرة
-                    `;
-                    scanBtn.style.borderColor = "#08b5e5";
-                }, 2000);
-            }, 1500);
-        });
     </script>
 </body>
 </html>
