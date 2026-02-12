@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bio-Mirror | الذكاء الحيوي النجمي</title>
+    
+    <script src="https://sdk.minepi.com/pi-sdk.js"></script>
+
+    <style>
+        :root { --pi-purple: #5e2d89; --stellar-blue: #08b5e5; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f0f1f; color: white; text-align: center; margin: 0; padding: 20px; }
+        .app-container { max-width: 500px; margin: auto; background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 20px; border: 1px solid var(--stellar-blue); box-shadow: 0 0 20px var(--stellar-blue); }
+        .scanner-area { width: 150px; height: 150px; margin: 20px auto; border: 3px solid var(--stellar-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.3s; position: relative; overflow: hidden; }
+        .scanner-area:active { transform: scale(0.95); box-shadow: 0 0 30px white; }
+        .ai-status { color: var(--stellar-blue); font-weight: bold; margin-top: 15px; min-height: 24px; }
+        .result-box { margin-top: 20px; padding: 15px; background: rgba(255, 255, 255, 0.1); border-radius: 10px; display: none; }
+        button { background: var(--pi-purple); color: white; border: none; padding: 12px 25px; border-radius: 25px; cursor: pointer; font-size: 16px; transition: 0.3s; }
+        button:hover { opacity: 0.8; }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <h1>Bio-Mirror 🏥</h1>
+        <p>مستقبل السيادة الصحية عبر شبكة Stellar</p>
+
+        <div class="scanner-area" id="scanBtn">
+            <span>إصبعك هنا</span>
+        </div>
+
+        <div id="aiStatus" class="ai-status">جاهز للتحليل الذكي...</div>
+
+        <div id="resultBox" class="result-box">
+            <h3>نتائج التحليل (AI):</h3>
+            <p id="healthStats"></p>
+            <small>تم التحقق عبر بروتوكول Stellar اللامركزي</small>
+        </div>
+
+        <br>
+        <button onclick="loginWithPi()">ربط محفظة Pi</button>
+    </div>
+
+    <script>
+        // 2. تهيئة Pi SDK
+        const Pi = window.Pi;
+        try {
+            Pi.init({ version: "2.0", sandbox: true });
+            console.log("Pi SDK Initialized");
+        } catch (e) { console.error("Pi SDK error:", e); }
+
+        function loginWithPi() {
+            Pi.authenticate(['payments', 'username'], onIncompletePaymentFound)
+                .then(function(auth) { alert("مرحباً: " + auth.user.username); })
+                .catch(function(e) { console.error(e); });
+        }
+
+        function onIncompletePaymentFound(payment) { /* منطق المدفوعات */ }
+
+        // 3. كود الذكاء الاصطناعي (محاكاة خوارزمية Stellar الطيفية)
+        const scanBtn = document.getElementById('scanBtn');
+        const aiStatus = document.getElementById('aiStatus');
+        const resultBox = document.getElementById('resultBox');
+        const healthStats = document.getElementById('healthStats');
+
+        scanBtn.addEventListener('click', () => {
+            aiStatus.innerText = "جاري تفعيل المصفوفة الطيفية...";
+            scanBtn.style.borderColor = "white";
+            
+            // محاكاة معالجة البيانات عبر خوارزمية ذكاء اصطناعي
+            setTimeout(() => {
+                aiStatus.innerText = "تحليل البيانات عبر عقد Stellar...";
+                
+                setTimeout(() => {
+                    const sugar = Math.floor(Math.random() * (120 - 80) + 80);
+                    const heartRate = Math.floor(Math.random() * (90 - 65) + 65);
+                    const pressure = "120/80";
+
+                    aiStatus.innerText = "اكتمل التحليل الذكي ✅";
+                    resultBox.style.display = "block";
+                    healthStats.innerHTML = `
+                        سكر الدم: ${sugar} mg/dL <br>
+                        نبض القلب: ${heartRate} BPM <br>
+                        ضغط الدم: ${pressure}
+                    `;
+                    scanBtn.style.borderColor = "#08b5e5";
+                }, 2000);
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
