@@ -11,7 +11,7 @@
         const Pi = window.Pi;
         Pi.init({ version: "2.0" });
 
-        // نظام التحويل الذكي لواجهة الإيكوسيستيم
+        // 1. نظام التحويل التلقائي الذكي عند فتح الرابط
         if (window.location.href.includes("pinet.com") || window.location.href.includes("pi")) {
             window.location.replace("pi://bmscanner2015.pinet.com");
         }
@@ -23,22 +23,12 @@
         .app-container { width: 90%; max-width: 450px; background: white; border-radius: 25px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.15); text-align: center; padding-bottom: 40px; border: 1px solid #eee; }
         .header { background: var(--primary-color); color: white; padding: 25px; font-size: 1.5em; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; }
         .flower-icon { color: var(--flower-color); font-size: 1.2em; }
-        
         .content { padding: 40px 20px; }
         .welcome-text { font-size: 1.15em; color: #444; margin-bottom: 35px; line-height: 1.7; font-weight: 500; }
-        
         .ecosystem-btn { 
-            background-color: var(--secondary-color); 
-            color: white; 
-            border: none; 
-            padding: 18px 45px; 
-            border-radius: 35px; 
-            font-size: 1.25em; 
-            font-weight: bold; 
-            text-decoration: none; 
-            display: inline-block;
-            transition: 0.3s;
-            box-shadow: 0 6px 20px rgba(229, 169, 61, 0.4);
+            background-color: var(--secondary-color); color: white; border: none; padding: 18px 45px; 
+            border-radius: 35px; font-size: 1.25em; font-weight: bold; text-decoration: none; 
+            display: inline-block; transition: 0.3s; box-shadow: 0 6px 20px rgba(229, 169, 61, 0.4);
         }
         .ecosystem-btn:hover { transform: scale(1.05); background-color: #d49835; }
     </style>
@@ -62,7 +52,7 @@
 <script>
     async function checkAndRedirect() {
         try {
-            // توثيق المستخدم داخل البيئة
+            // 3. التوثيق والتحويل التلقائي للمستخدمين الموثقين
             const auth = await Pi.authenticate(['username', 'payments'], function(payment){}); 
             if (auth) {
                 window.location.replace("pi://bmscanner2015.pinet.com");
@@ -74,3 +64,4 @@
 
 </body>
 </html>
+
