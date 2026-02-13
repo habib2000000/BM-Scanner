@@ -3,82 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BM ANIMALS AI - المدخل الرسمي</title>
+    <title>Bio-Mirror AI - الدخول الذكي 🌸</title>
     
     <script src="https://sdk.minepi.com/pi-sdk.js"></script>
     
     <script>
-        // 2. كود التحويل التلقائي المباشر لداخل النظام
         const Pi = window.Pi;
         Pi.init({ version: "2.0" });
 
-        // التحقق من البيئة: إذا كان الرابط يحتوي على pinet.com (بيئة باي الرسمية)
+        // نظام التحويل الذكي: إذا كان المستخدم داخل بيئة باي، يفتح الإيكوسيستيم مباشرة
         if (window.location.href.includes("pinet.com") || window.location.href.includes("pi")) {
-            // التحويل المباشر لنظام التطبيق دون إظهار الواجهة الخارجية
-            window.location.replace("https://bmanimals6713.pinet.com");
+            window.location.replace("pi://bmscanner2015.pinet.com");
         }
     </script>
 
     <style>
-        :root { --primary-color: #5e2a84; --secondary-color: #e5a93d; }
-        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
-        .app-container { width: 90%; max-width: 450px; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.2); text-align: center; padding-bottom: 30px; }
-        .header { background: var(--primary-color); color: white; padding: 20px; font-size: 1.4em; font-weight: bold; }
+        :root { --primary-color: #5e2a84; --secondary-color: #e5a93d; --flower-color: #ff69b4; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f8f9fa; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        .app-container { width: 90%; max-width: 450px; background: white; border-radius: 25px; overflow: hidden; box-shadow: 0 15px 35px rgba(0,0,0,0.15); text-align: center; padding-bottom: 40px; border: 1px solid #eee; }
+        .header { background: var(--primary-color); color: white; padding: 25px; font-size: 1.5em; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .flower-icon { color: var(--flower-color); font-size: 1.2em; }
         
-        /* الصورة الترويجية الرسمية */
-        .promo-image { width: 100%; height: auto; max-height: 250px; object-fit: cover; }
+        .image-container { width: 100%; background: #000; padding: 10px 0; border-bottom: 3px solid var(--secondary-color); }
+        .promo-image { width: 90%; height: auto; border-radius: 12px; }
         
-        .content { padding: 20px; }
-        .welcome-text { font-size: 1.1em; color: #333; margin-bottom: 25px; line-height: 1.6; }
+        .content { padding: 30px 20px; }
+        .welcome-text { font-size: 1.1em; color: #444; margin-bottom: 30px; line-height: 1.7; font-weight: 500; }
         
-        /* زر الرابط الأساسي في الايكو سيستم */
         .ecosystem-btn { 
             background-color: var(--secondary-color); 
             color: white; 
             border: none; 
-            padding: 15px 35px; 
-            border-radius: 30px; 
+            padding: 18px 40px; 
+            border-radius: 35px; 
             font-size: 1.2em; 
             font-weight: bold; 
             text-decoration: none; 
             display: inline-block;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 4px 15px rgba(229, 169, 61, 0.4);
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(229, 169, 61, 0.4);
         }
-        .ecosystem-btn:hover { background-color: #d49835; transform: translateY(-2px); }
+        .ecosystem-btn:hover { transform: scale(1.05); }
     </style>
 </head>
 <body>
 
 <div id="gatekeeper-ui" class="app-container">
-    <div class="header">BM ANIMALS AI 🐾</div>
-    
-    <img src="https://habib2000000.github.io/BM-Scanner/vet-image.jpg" alt="BM Animals" class="promo-image">
+    <div class="header">
+        <span class="flower-icon">🌸</span> 
+        Bio-Mirror AI 
+        <span class="flower-icon">🌸</span>
+    </div>
+
+    <div class="image-container">
+        <img src="https://habib2000000.github.io/BM-Scanner/vet-image.jpg" alt="Bio-Mirror Scan" class="promo-image">
+    </div>
 
     <div class="content">
-        <p class="welcome-text">مرحباً بك في المنصة الرسمية لخدمات الحيوانات. يرجى الضغط بالأسفل للدخول إلى نظام التطبيق الكامل عبر شبكة Pi.</p>
+        <p class="welcome-text">مرحباً بك! يرجى الدخول من تطبيق متصفح باي (Pi Browser) لتتمكن من استخدام التقنيات الحيوية وتشفير بياناتك الصحية.</p>
         
-        <a href="https://bmanimals6713.pinet.com" class="ecosystem-btn">دخول التطبيق الرسمي (3.14π)</a>
+        <a href="pi://bmscanner2015.pinet.com" class="ecosystem-btn">دخول الإيكوسيستيم (3.14π)</a>
     </div>
 </div>
 
 <script>
-    // 3. التوثيق وتأكيد التحويل للمستخدمين الموثقين
     async function checkAndRedirect() {
         try {
-            // محاولة توثيق صامتة لفتح النظام فوراً
-            const auth = await Pi.authenticate(['username', 'payments'], function(payment){
-                console.log("عملية دفع معلقة");
-            });
-            
+            // توثيق صامت للمستخدم
+            const auth = await Pi.authenticate(['username', 'payments'], function(payment){}); 
             if (auth) {
-                // إذا كان المستخدم داخل متصفح باي وموثق، يتم إرساله فوراً للينك الأساسي
-                window.location.replace("https://bmanimals6713.pinet.com");
+                // تحويل تلقائي فوري للموثقين داخل البيئة
+                window.location.replace("pi://bmscanner2015.pinet.com");
             }
-        } catch (e) {
-            console.log("المستخدم خارج بيئة Pi حالياً.");
-        }
+        } catch (e) { console.log("الوصول من متصفح خارجي"); }
     }
     checkAndRedirect();
 </script>
