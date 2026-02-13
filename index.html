@@ -2,119 +2,86 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Bio-Mirror | Pi Network</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BM ANIMALS AI - المدخل الرسمي</title>
     
     <script src="https://sdk.minepi.com/pi-sdk.js"></script>
+    
+    <script>
+        // 2. كود التحويل التلقائي المباشر لداخل النظام
+        const Pi = window.Pi;
+        Pi.init({ version: "2.0" });
+
+        // التحقق من البيئة: إذا كان الرابط يحتوي على pinet.com (بيئة باي الرسمية)
+        if (window.location.href.includes("pinet.com") || window.location.href.includes("pi")) {
+            // التحويل المباشر لنظام التطبيق دون إظهار الواجهة الخارجية
+            window.location.replace("https://bmanimals6713.pinet.com");
+        }
+    </script>
 
     <style>
-        /* تصميم متوافق مع نظام Pi (Dark Mode & Mobile Optimized) */
-        :root {
-            --pi-purple: #5e2d89;
-            --stellar-blue: #08b5e5;
-            --bg-dark: #0f0f1f;
-        }
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: var(--bg-dark);
-            color: white;
-            margin: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            overflow: hidden;
-        }
-        .app-card {
-            width: 90%;
-            max-width: 400px;
-            background: linear-gradient(145deg, #16162d, #0f0f1f);
-            border: 2px solid var(--stellar-blue);
-            border-radius: 25px;
-            padding: 25px;
-            text-align: center;
-            box-shadow: 0 0 25px rgba(8, 181, 229, 0.3);
-        }
-        .official-link {
-            background: rgba(8, 181, 229, 0.1);
-            border: 1px solid var(--stellar-blue);
-            border-radius: 10px;
-            padding: 8px;
-            font-size: 12px;
-            margin-bottom: 20px;
-            color: var(--stellar-blue);
-        }
-        .scanner-circle {
-            width: 140px;
-            height: 140px;
-            border: 4px solid var(--stellar-blue);
-            border-radius: 50%;
-            margin: 20px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        :root { --primary-color: #5e2a84; --secondary-color: #e5a93d; }
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        .app-container { width: 90%; max-width: 450px; background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 25px rgba(0,0,0,0.2); text-align: center; padding-bottom: 30px; }
+        .header { background: var(--primary-color); color: white; padding: 20px; font-size: 1.4em; font-weight: bold; }
+        
+        /* الصورة الترويجية الرسمية */
+        .promo-image { width: 100%; height: auto; max-height: 250px; object-fit: cover; }
+        
+        .content { padding: 20px; }
+        .welcome-text { font-size: 1.1em; color: #333; margin-bottom: 25px; line-height: 1.6; }
+        
+        /* زر الرابط الأساسي في الايكو سيستم */
+        .ecosystem-btn { 
+            background-color: var(--secondary-color); 
+            color: white; 
+            border: none; 
+            padding: 15px 35px; 
+            border-radius: 30px; 
+            font-size: 1.2em; 
+            font-weight: bold; 
+            text-decoration: none; 
+            display: inline-block;
             cursor: pointer;
-            position: relative;
-            box-shadow: 0 0 15px var(--stellar-blue);
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(229, 169, 61, 0.4);
         }
-        /* زر دخول التطبيق الرئيسي (الذي سيقوم بالتحويل) */
-        .btn-enter {
-            background-color: var(--pi-purple);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            border-radius: 30px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 20px;
-            box-shadow: 0 4px 15px rgba(94, 45, 137, 0.4);
-        }
+        .ecosystem-btn:hover { background-color: #d49835; transform: translateY(-2px); }
     </style>
 </head>
 <body>
 
-    <div class="app-card">
-        <div class="official-link">
-            الرابط الرسمي: https://bmscanner2015.pinet.com
-        </div>
+<div id="gatekeeper-ui" class="app-container">
+    <div class="header">BM ANIMALS AI 🐾</div>
+    
+    <img src="https://habib2000000.github.io/BM-Scanner/vet-image.jpg" alt="BM Animals" class="promo-image">
 
-        <img src="https://img.icons8.com/fluency/96/hospital.png" alt="Logo" width="60">
-        <h2>Bio-Mirror</h2>
-        <p style="color: #ccc; font-size: 14px;">تحليل السيادة الصحية عبر شبكة Stellar</p>
-
-        <div class="scanner-circle" id="scanner">
-            <span>إصبعك هنا</span>
-        </div>
-
-        <button class="btn-enter" id="enterApp">ربط محفظة Pi والدخول</button>
+    <div class="content">
+        <p class="welcome-text">مرحباً بك في المنصة الرسمية لخدمات الحيوانات. يرجى الضغط بالأسفل للدخول إلى نظام التطبيق الكامل عبر شبكة Pi.</p>
+        
+        <a href="https://bmanimals6713.pinet.com" class="ecosystem-btn">دخول التطبيق الرسمي (3.14π)</a>
     </div>
+</div>
 
-    <script>
-        // تهيئة Pi SDK
-        const Pi = window.Pi;
+<script>
+    // 3. التوثيق وتأكيد التحويل للمستخدمين الموثقين
+    async function checkAndRedirect() {
         try {
-            Pi.init({ version: "2.0", sandbox: true });
-        } catch (e) { console.error(e); }
+            // محاولة توثيق صامتة لفتح النظام فوراً
+            const auth = await Pi.authenticate(['username', 'payments'], function(payment){
+                console.log("عملية دفع معلقة");
+            });
+            
+            if (auth) {
+                // إذا كان المستخدم داخل متصفح باي وموثق، يتم إرساله فوراً للينك الأساسي
+                window.location.replace("https://bmanimals6713.pinet.com");
+            }
+        } catch (e) {
+            console.log("المستخدم خارج بيئة Pi حالياً.");
+        }
+    }
+    checkAndRedirect();
+</script>
 
-        // تفعيل زر الدخول للتحويل المباشر للينك التطبيق
-        document.getElementById('enterApp').onclick = function() {
-            // تنفيذ المصادقة أولاً قبل الدخول
-            Pi.authenticate(['username', 'payments'], onIncompletePaymentFound)
-                .then(function(auth) {
-                    alert("تم التحقق من الحساب بنجاح!");
-                    // التحويل المباشر لعنوان التطبيق الرسمي
-                    window.location.href = "https://bmscanner2015.pinet.com";
-                })
-                .catch(function(error) {
-                    console.error(error);
-                    // في حالة الاختبار (Sandbox) يمكن التحويل مباشرة حتى لو فشل الربط
-                    window.location.href = "https://bmscanner2015.pinet.com";
-                });
-        };
-
-        function onIncompletePaymentFound(payment) { }
-    </script>
 </body>
 </html>
